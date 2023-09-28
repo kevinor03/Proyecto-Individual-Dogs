@@ -3,14 +3,15 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
 
    sequelize.define('temperament', {
-      ID: {
+      id: {
          type: DataTypes.INTEGER,
-         primaryKey: true,
-         unique: true,
+         autoIncrement: true,
+         primaryKey: true
       },
-      Nombre: {
+      temperament: {
          type: DataTypes.STRING,
          allowNull: false,
+         unique: true,
       },
    }, { timestamps: false });
 }
