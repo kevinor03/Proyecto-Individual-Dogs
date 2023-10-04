@@ -62,7 +62,7 @@ Está permitido, **bajo tu responsabilidad**, actualizar las dependencias a vers
 2. Clona el repositorio en tu computadora para comenzar a trabajar. Este repositorio contiene un **`BoilerPlate`** con la estructura general del proyecto, tanto del servidor como del cliente. El boilerplate cuenta con dos carpetas: **`api`** y **`client`**. En estas carpetas estará el código del back-end y el front-end respectivamente.
 
 3. En la carpeta **`api`** deberás crear un archivo llamado: **`.env`** que tenga la siguiente forma:
-
+ 
    ```env
        DB_USER=usuariodepostgres
        DB_PASSWORD=passwordDePostgres

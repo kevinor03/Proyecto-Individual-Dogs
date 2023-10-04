@@ -23,16 +23,16 @@ async function getRazaId(idRaza, source) {
 }
 
 async function getRazaName(name) {
-   const razaAPI = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data
-   // const razaAPI = {
-   //    id: dogAPI.id,
-   //    name: dogAPI.name,
-   //    weight: dogAPI.weight,
-   //    height: dogAPI.height,
-   //    life_span: dogAPI.life_span,
-   //    temperament: dogAPI.temperament,
-   //    image: dogAPI.image,
-   // }
+   const dogAPI = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data
+   const razaAPI = [{
+      id: dogAPI[0].id,
+      name: dogAPI[0].name,
+      weight: dogAPI[0].weight.metric,
+      height: dogAPI[0].height.metric,
+      life_span: dogAPI[0].life_span,
+      temperament: dogAPI[0].temperament,
+      image: dogAPI[0].image.url,
+   }]
    const razaBD = await Dog.findAll({ where: { name: name } })
    return [...razaBD, ...razaAPI]
 }

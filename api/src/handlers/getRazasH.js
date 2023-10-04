@@ -19,7 +19,6 @@ const getTemperamentHandler = async (req, res) => {
    } catch (error) {
       res.status(400).json("la wea no quiere leer el split")
    }
-
 }
 
 module.exports = {

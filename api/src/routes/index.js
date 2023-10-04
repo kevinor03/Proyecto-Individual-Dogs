@@ -15,9 +15,9 @@ router.get('/temperaments', getTemperamentHandler) //? obtencion y guardado de t
 
 router.get('/dogs/:idRaza', getRazaIdHandler) //? busqueda por ID listo
 
-router.get('/name', getRazaNameHandler) //? busqueda por Name listo (falta limpiar la info sacada de la API)
+router.get('/name', getRazaNameHandler) //? busqueda por Name listo
 
-router.post('/dogs', createRazaHandler) //? entrada de datos a la BD listo
+router.post('/postdogs', createRazaHandler) //? entrada de datos a la BD listo
 
 
 
