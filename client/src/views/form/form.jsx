@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './form.css';
 
@@ -59,11 +60,19 @@ function Form() {
 
    }
 
+   const handleSubmit = (e) => {
+      e.preventDefault()
+      
+   }
+
    return (
       <div>
          <form onSubmit={null}>
             <div>
                <h1>Pagina de Agregado de Razas</h1>
+               <Link to="/home">
+            <button>Home</button>
+         </Link>
                <label> Nombre: </label>
                <input type='text' placeholder='Nombre de raza' name="name" value={input.value} onChange={handleChange} /> <br />
                {<span>{error.name}</span> && error.name}
@@ -100,3 +109,27 @@ function Form() {
 }
 
 export default Form;
+
+// document.getElementById('miFormulario').addEventListener('submit', async (event) => {
+//    event.preventDefault();
+ 
+//    // Obtener los datos del formulario
+//    const formData = new FormData(event.target);
+ 
+//    // Realizar una solicitud POST al servidor
+//    try {
+//      const response = await fetch('/ruta-en-backend', {
+//        method: 'POST',
+//        body: formData,
+//      });
+ 
+//      if (response.ok) {
+//        // El servidor respondió con éxito
+//        console.log('Datos enviados y almacenados en la base de datos.');
+//      } else {
+//        console.error('Error al enviar datos al servidor.');
+//      }
+//    } catch (error) {
+//      console.error('Error de red:', error);
+//    }
+//  });

@@ -1,8 +1,9 @@
 // import Cards from '../../components/cards/cards';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getById } from '../../redux/actions';
 import { useEffect, useState } from 'react';
+
 
 
 import './detail.css';
@@ -11,16 +12,21 @@ function Detail() {
    const dispatch = useDispatch();
    const { id } = useParams(); //? recibe correctamente el id
 
-   function handleGetId(e) {
-      dispatch(getById(e))
+   const data = (id) => {
+      dispatch(getById(id))
    }
 
-   const { data } = getById(id)
-   console.log(data)
+   const info = data(id)
+   console.log(info)
 
    return (
       <div>
          <h1>Pagina de Detalles de {id} </h1>
+         <p>{info}</p>
+         <Link to="/home">
+            <button>Home</button>
+         </Link>
+
       </div>
    );
 }

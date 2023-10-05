@@ -10,7 +10,7 @@ function Card({ raza }) {
          <Link to={`/home/${id}`}>
             <h2>{name}</h2>
             <img className='image' src={image} alt={name} />
-            <p>temperamentos: aqui van los temperamentos</p>
+            <p>temperamentos: XD</p>
             <p>peso: {weight} Kgs</p>
          </Link>
       </div>

@@ -6,12 +6,16 @@ import NavBar from '../../components/navbar/navbar';
 import Cards from '../../components/cards/cards';
 
 import './home.css';
+import { Paginacion } from '../../components/paginacion/paginacion';
 
 function Home() {
    const dispatch = useDispatch()
    const allRazas = useSelector((state) => state.allRazas) // conexion al estado de razas
    // const allTemperaments = useSelector((state) => state.allTemperaments) // conexion al estado de temperamentos
    const [searchName, setSearchName] = useState("")
+   const [pagina, setPagina] = useState(1)
+   const [porPagina, setPorPagina] = useState(8)
+   const maximo = Math.ceil(allRazas.length / porPagina)
 
    function handleChange(e) {
       e.preventDefault()
@@ -20,7 +24,11 @@ function Home() {
 
    function handleSubmit(e) {
       e.preventDefault()
-      dispatch(getNameRazas(searchName))
+      if (e) {
+         dispatch(getNameRazas(searchName))
+      } else {
+         dispatch(getRazas())
+      }
    }
 
    function handleReset(e) {
@@ -34,12 +42,17 @@ function Home() {
    }, [dispatch])
 
    return (
-      <div className='home'>
-         <h2 className='title'> Proyecto <span className='span'>Dogs</span></h2>
-         <div className='welcome'>
-            <NavBar handleChange={handleChange} handleSubmit={handleSubmit} handleReset={handleReset} />
+      <div>
+         <div className='home'>
+            <h2 className='title'> Proyecto <span className='span'>Dogs</span></h2>
+            <div className='welcome'>
+               <NavBar handleChange={handleChange} handleSubmit={handleSubmit} handleReset={handleReset} />
+            </div>
+            <Cards allRazas={allRazas} pagina={pagina} porPagina={porPagina} />
          </div>
-         <Cards allRazas={allRazas} />
+         <div>
+            <Paginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
+         </div>
       </div>
    );
 }

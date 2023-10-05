@@ -3,6 +3,7 @@ import axios from 'axios'
 export const GET_RAZAS = "GET_RAZAS"
 export const GET_BY_NAME = "GET_BY_NAME"
 export const GET_BY_ID = "GET_BY_ID"
+export const POST_RAZA = "POST_RAZA"
 export const RESET = 'RESET'
 
 export const getRazas = () => {
@@ -27,7 +28,7 @@ export const getNameRazas = (name) => {
 
 export const getById = (id) => {
    return async (dispatch) => {
-      const response = await axios(`http://localhost:3001/dogs/${id}`)
+      const response = await axios.get(`http://localhost:3001/dogs/${id}`)
       return dispatch({
          type: GET_BY_ID,
          payload: response.data,
@@ -35,6 +36,15 @@ export const getById = (id) => {
    }
 }
 
+export const postRaza = (form) => {
+   return async (dispatch) => {
+      const { data } = await axios.post("http://localhost:3001/dogs", form)
+      return dispatch({
+         type: POST_RAZA,
+         payload: data,
+      })
+   }
+}
 
 export const resetFilter = () => {
    return {

@@ -1,4 +1,4 @@
-const { GET_RAZAS, GET_BY_NAME, GET_BY_ID, RESET } = require("../actions");
+const { GET_RAZAS, GET_BY_NAME, GET_BY_ID, RESET, POST_RAZA } = require("../actions");
 
 let initialState = { allRazas: [], copyRazas: [], allTemperaments: [] }
 
@@ -18,8 +18,13 @@ function rootReducer(state = initialState, action) {
       case GET_BY_ID:
          return {
             ...state,
-            allRazas: action.payload
+            allRazas: action.payload,
          };
+      // case POST_RAZA:
+      //    return {
+      //       ...state,
+
+      //    };
       case RESET:
          return {
             ...state,

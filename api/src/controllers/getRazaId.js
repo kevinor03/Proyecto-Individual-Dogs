@@ -5,7 +5,7 @@ const { API_KEY } = process.env
 // "idRaza" sera un INTEGER o un UUID y "source" sera "API" o "BD" 
 async function getRazaId(idRaza, source) {
    if (source === "API") {
-      const dog = (await axios.get(`https://api.thedogapi.com/v1/breeds/${idRaza}?api_key=${API_KEY}`)).data
+      const dog = (await axios.get(`https://api.thedogapi.com/v1/breeds/${idRaza}&api_key=${API_KEY}`)).data
       const raza = {
          id: dog.id,
          name: dog.name,
