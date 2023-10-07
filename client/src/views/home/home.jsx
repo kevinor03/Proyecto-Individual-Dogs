@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getNameRazas, getRazas, resetFilter } from '../../redux/actions';
+import { getNameRazas, getRazas, resetFilter, getTemperaments } from '../../redux/actions';
 
 import NavBar from '../../components/navbar/navbar';
 import Cards from '../../components/cards/cards';
@@ -37,7 +37,7 @@ function Home() {
    }
 
    useEffect(() => {
-      dispatch(getRazas())
+      dispatch(getRazas(), getTemperaments())
       //return (()=>{"clearDetail()"}) //? el return limpia el estado, habria que averiguar como funciona
    }, [dispatch])
 

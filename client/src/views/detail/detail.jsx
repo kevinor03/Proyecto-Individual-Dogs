@@ -1,32 +1,45 @@
-// import Cards from '../../components/cards/cards';
-import { useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
-import { getById } from '../../redux/actions';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import axios from 'axios'
 
 
 import './detail.css';
 
 function Detail() {
-   const dispatch = useDispatch();
    const { id } = useParams(); //? recibe correctamente el id
+   const navigate = useNavigate();
+   const [character, setCharacter] = useState({})
 
-   const data = (id) => {
-      dispatch(getById(id))
-   }
+   useEffect(() => {
+      axios(`http://localhost:3001/dogs/${id}`).then(
+         ({ data }) => {
+            if (data.name) {
+               setCharacter(data);
+            } else {
+               window.alert("No hay personajes con ese ID");
+            }
+         }
+      );
+      return setCharacter({});
+   }, [id]);
 
-   const info = data(id)
-   console.log(info)
+   const home = () => {
+      navigate(-1);
+   };
 
    return (
       <div>
-         <h1>Pagina de Detalles de {id} </h1>
-         <p>{info}</p>
-         <Link to="/home">
-            <button>Home</button>
-         </Link>
-
+         <h1>{character.name} ({id}) </h1>
+         <div className='position'>
+            <img className='image' src={character.image} alt={character.name} />
+         </div>
+         <div className='datos'>
+            <span>Weight: {character.weight?.metric} Kg </span>
+            <span>Height: {character.height?.metric} cms</span>
+            <span>Life Span: {character.life_span}</span>
+            <span>Temperaments: {character.temperament}</span>
+         </div>
+         <button className='button' onClick={home}>Home</button>
       </div>
    );
 }

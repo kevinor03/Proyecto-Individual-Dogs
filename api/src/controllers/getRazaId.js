@@ -13,7 +13,7 @@ async function getRazaId(idRaza, source) {
          height: dog.height,
          life_span: dog.life_span,
          temperament: dog.temperament,
-         image: dog.image,
+         image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
       }
       return raza;
    } else {

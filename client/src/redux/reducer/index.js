@@ -1,6 +1,6 @@
-const { GET_RAZAS, GET_BY_NAME, GET_BY_ID, RESET, POST_RAZA } = require("../actions");
+const { GET_RAZAS, GET_BY_NAME, GET_BY_ID, RESET, POST_RAZA, GET_TEMPERAMENTS } = require("../actions");
 
-let initialState = { allRazas: [], copyRazas: [], allTemperaments: [] }
+let initialState = { allRazas: [], copyRazas: [], allTemperaments: [], copyTemperament: [] }
 
 function rootReducer(state = initialState, action) {
    switch (action.type) {
@@ -10,6 +10,12 @@ function rootReducer(state = initialState, action) {
             allRazas: action.payload,
             copyRazas: action.payload,
          };
+      case GET_TEMPERAMENTS:
+         return {
+            ...state,
+            allTemperaments: action.payload,
+            copyTemperament: action.payload
+         }
       case GET_BY_NAME:
          return {
             ...state,

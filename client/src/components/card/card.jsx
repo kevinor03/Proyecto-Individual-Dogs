@@ -10,8 +10,8 @@ function Card({ raza }) {
          <Link to={`/home/${id}`}>
             <h2>{name}</h2>
             <img className='image' src={image} alt={name} />
-            <p>temperamentos: XD</p>
-            <p>peso: {weight} Kgs</p>
+            <p>Temperaments: XD</p>
+            <p>Weight: {weight} Kg</p>
          </Link>
       </div>
    );

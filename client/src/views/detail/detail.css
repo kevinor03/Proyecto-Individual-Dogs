@@ -1,0 +1,23 @@
+.image {
+   width: 200px;
+}
+
+.datos {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 25px;
+}
+
+.position {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.button {
+   background-color: white;
+   border: solid #58FAF4 1px;
+   border-radius: 3px;
+}

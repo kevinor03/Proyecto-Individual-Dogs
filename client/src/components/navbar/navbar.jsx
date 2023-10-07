@@ -7,23 +7,23 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
       <div>
          <form onChange={handleChange}>
             <NavContainer>
-               <select>
-                  <option>Nombre A-Z</option>
-                  <option>Peso May-Mer</option>
+               <select> {/* ORDENAMIENTO */}
+                  <option>Name A-Z</option>
+                  <option>Weight Asc-Des</option>
                </select>
-               <select>
-                  <option>Temperamentos</option>
+               <select> {/* FILTRO 1 */}
+                  <option>Temperaments</option>
                </select>
-               <select>
+               <select> {/* FILTRO 2 */}
                   <option>BDD</option>
                   <option>API</option>
                </select>
-               <SearchInput type='search' placeholder="Busqueda por Nombre" />
+               <SearchInput type='search' placeholder="Search for Name" /> {/* search bar */}
                <SearchIconBox>
-                  <SearchIcon type='submit' onClick={handleSubmit} />
+                  <SearchIcon type='submit' onClick={handleSubmit} /> {/* boton de busqueda */}
                </SearchIconBox>
                <Link to="/form">
-                  <button>Agregar</button>
+                  <button>Add</button>
                </Link>
                <button onClick={handleReset}>Reset</button>
                <Link to='/'>
