@@ -3,8 +3,9 @@ import axios from 'axios'
 export const GET_RAZAS = "GET_RAZAS"
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS"
 export const GET_BY_NAME = "GET_BY_NAME"
-export const GET_BY_ID = "GET_BY_ID"
-export const POST_RAZA = "POST_RAZA"
+export const ORDER = "ORDER"
+export const FILTER_T = "FILTER_T"
+export const FILTER_O = "FILTER_O"
 export const RESET = 'RESET'
 
 export const getRazas = () => {
@@ -19,10 +20,10 @@ export const getRazas = () => {
 
 export const getTemperaments = () => {
    return async (dispatch) => {
-      const response = await axios('http://localhost:3001/temperaments')
+      const { data } = await axios('http://localhost:3001/temperaments')
       return dispatch({
          type: GET_TEMPERAMENTS,
-         payload: response.data,
+         payload: data,
       })
    }
 } 
@@ -37,22 +38,29 @@ export const getNameRazas = (name) => {
    }
 }
 
-export const getById = (id) => {
-   return async (dispatch) => {
-      const response = await axios.get(`http://localhost:3001/dogs/${id}`)
+export const orderRazas = (order) => {
+   return (dispatch) => {
       return dispatch({
-         type: GET_BY_ID,
-         payload: response.data,
+         type: ORDER,
+         payload: order
       })
    }
 }
 
-export const postRaza = (form) => {
-   return async (dispatch) => {
-      const { data } = await axios.post("http://localhost:3001/dogs", form)
+export const filterTemp = (temp) => {
+   return (dispatch) => {
       return dispatch({
-         type: POST_RAZA,
-         payload: data,
+         type: FILTER_T,
+         payload: temp
+      })
+   }
+}
+
+export const filterOrigin = (origin) => {
+   return (dispatch) => {
+      return dispatch({
+         type: FILTER_O,
+         payload: origin
       })
    }
 }

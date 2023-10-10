@@ -6,8 +6,7 @@ function Landing() {
    return (
       <div>
          <div className="welcome">
-            <h1>¡Bienvenido!</h1>
-            <h2>¡Elija su raza de perro aqui!</h2>
+            <h2>¡Welcome Back!</h2>
          </div>
          <Link to='/home'>
             <button>¡Vamos!</button>

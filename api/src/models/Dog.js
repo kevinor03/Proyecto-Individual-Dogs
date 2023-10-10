@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
          allowNull: false,
       },
       temperament: {
-         type: DataTypes.ARRAY(DataTypes.STRING),
+         type: DataTypes.STRING,
          allowNull: false
       },
       image: {

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 function BurgerButton() {
   return (
     <Burger>
-      <div on className="icon nav-icon-5 open">
+      <div className="icon nav-icon-5 open">
         <span></span>
         <span></span>
         <span></span>

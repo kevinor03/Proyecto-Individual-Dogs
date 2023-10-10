@@ -37,14 +37,15 @@ function Home() {
    }
 
    useEffect(() => {
-      dispatch(getRazas(), getTemperaments())
+      dispatch(getRazas())
+      dispatch(getTemperaments())
       //return (()=>{"clearDetail()"}) //? el return limpia el estado, habria que averiguar como funciona
    }, [dispatch])
 
    return (
       <div>
          <div className='home'>
-            <h2 className='title'> Proyecto <span className='span'>Dogs</span></h2>
+            <h2 className='title'> Proyect <span className='span'>Dogs</span></h2>
             <div className='welcome'>
                <NavBar handleChange={handleChange} handleSubmit={handleSubmit} handleReset={handleReset} />
             </div>

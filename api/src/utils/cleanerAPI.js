@@ -7,6 +7,7 @@ const cleanerAPI = (arr) => {
          weight: data.weight.metric,
          height: data.height.metric,
          life_span: data.life_span,
+         temperament: data.temperament,
          image: data.image.url,
       }
    })

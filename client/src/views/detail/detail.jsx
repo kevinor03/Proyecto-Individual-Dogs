@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
@@ -29,13 +29,13 @@ function Detail() {
 
    return (
       <div>
-         <h1>{character.name} ({id}) </h1>
+         <h1>{character.name}</h1>
          <div className='position'>
             <img className='image' src={character.image} alt={character.name} />
          </div>
          <div className='datos'>
-            <span>Weight: {character.weight?.metric} Kg </span>
-            <span>Height: {character.height?.metric} cms</span>
+            <span>Weight: {character.weight?.metric || character.weight} Kg </span>
+            <span>Height: {character.height?.metric || character.height} cms</span>
             <span>Life Span: {character.life_span}</span>
             <span>Temperaments: {character.temperament}</span>
          </div>

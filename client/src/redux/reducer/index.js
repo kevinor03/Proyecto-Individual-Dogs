@@ -1,40 +1,164 @@
-const { GET_RAZAS, GET_BY_NAME, GET_BY_ID, RESET, POST_RAZA, GET_TEMPERAMENTS } = require("../actions");
+const { GET_RAZAS, GET_TEMPERAMENTS, GET_BY_NAME, ORDER, FILTER_T, FILTER_O, RESET } = require("../actions");
 
-let initialState = { allRazas: [], copyRazas: [], allTemperaments: [], copyTemperament: [] }
+let initialState = {
+   allRazas: [],
+   copyRazas: [],
+   copyReset: [],
+   allTemperaments: [],
+   filters: { order: 'Asc', filterT: 'All', filterO: 'All' },
+}
 
 function rootReducer(state = initialState, action) {
-   switch (action.type) {
+   const { payload, type } = action
+   switch (type) {
       case GET_RAZAS:
          return {
             ...state,
-            allRazas: action.payload,
-            copyRazas: action.payload,
+            allRazas: payload,
+            copyRazas: payload,
+            copyReset: payload,
          };
       case GET_TEMPERAMENTS:
          return {
             ...state,
-            allTemperaments: action.payload,
-            copyTemperament: action.payload
+            allTemperaments: payload,
          }
       case GET_BY_NAME:
          return {
             ...state,
-            allRazas: action.payload,
+            allRazas: payload,
          };
-      case GET_BY_ID:
+      case ORDER:
+         let orderRazas = [...state.allRazas]
+         let orderCopy = [...state.copyRazas]
+         switch (payload) {
+            case 'Name Asc':
+               orderRazas?.sort((a, b) => a.name.localeCompare(b.name))
+               orderCopy?.sort((a, b) => a.name.localeCompare(b.name))
+               break;
+            case 'Name Des':
+               orderRazas?.sort((a, b) => b.name.localeCompare(a.name))
+               orderCopy?.sort((a, b) => b.name.localeCompare(a.name))
+               break;
+            case 'Weight Asc':
+               orderRazas?.sort((a, b) => {
+                  let pesoA;
+                  let pesoB;
+
+                  pesoA = a.weight?.split(' - ');
+                  pesoA = pesoA.length > 1 ? pesoA[1] : pesoA[0]
+                  pesoB = b.weight?.split(' - ')
+                  pesoB = pesoB.length > 1 ? pesoB[1] : pesoB[0]
+
+                  return parseInt(pesoA) - parseInt(pesoB)
+               })
+
+               orderCopy?.sort(((a, b) => {
+                  let pesoA;
+                  let pesoB;
+
+                  pesoA = a.weight?.split(' - ');
+                  pesoA = pesoA.length > 1 ? pesoA[1] : pesoA[0]
+                  pesoB = b.weight?.split(' - ')
+                  pesoB = pesoB.length > 1 ? pesoB[1] : pesoB[0]
+
+                  return parseInt(pesoA[0]) - parseInt(pesoB[0])
+               }))
+               break;
+
+            case "Weight Des":
+               orderRazas?.sort(((a, b) => {
+                  let pesoA;
+                  let pesoB;
+
+                  pesoA = a.weight?.split(' - ');
+                  pesoA = pesoA.length > 1 ? pesoA[1] : pesoA[0]
+                  pesoB = b.weight?.split(' - ')
+                  pesoB = pesoB.length > 1 ? pesoB[1] : pesoB[0]
+
+                  return parseInt(pesoB) - parseInt(pesoA)
+
+               }))
+
+               orderCopy?.sort(((a, b) => {
+                  let pesoA;
+                  let pesoB;
+
+                  pesoA = a.weight?.split(' - ');
+                  pesoA = pesoA.length > 1 ? pesoA[1] : pesoA[0]
+                  pesoB = b.weight?.split(' - ')
+                  pesoB = pesoB.length > 1 ? pesoB[1] : pesoB[0]
+
+                  return parseInt(pesoB) - parseInt(pesoA)
+
+               }))
+               break;
+
+            default:
+               break;
+         }
          return {
             ...state,
-            allRazas: action.payload,
-         };
-      // case POST_RAZA:
-      //    return {
-      //       ...state,
+            allRazas: orderRazas,
+            copyRazas: orderCopy,
+            filters: {
+               ...state.filters,
+               order: payload ? payload : 'Name Asc',
+            },
+         }
+      case FILTER_T:
+         if (payload === 'All') {
+            return {
+               ...state,
+               allRazas: state.copyReset,
+               filters: {
+                  ...state.filters,
+                  filterT: payload,
+               },
+            }
+         } else {
+            let filter = state.allRazas.filter((dog) => dog?.temperament?.includes(payload))
 
-      //    };
+            return {
+               ...state,
+               allRazas: state.copyRazas,
+               allRazas: filter,
+               filters: {
+                  ...state.filters,
+                  filterT: payload,
+                  filterO: 'All',
+               },
+            }
+         }
+      case FILTER_O:
+         if (payload === 'All') {
+            return {
+               ...state,
+               allRazas: state.copyReset,
+               filters: {
+                  ...state.filters,
+                  filterO: payload,
+               },
+            }
+         } else {
+            let filter = []
+            if (payload === 'API') filter = state.copyRazas.filter((dog) => typeof (dog?.id) === 'number')
+            else if (payload === 'DB') filter = state.copyRazas.filter((dog) => typeof (dog?.id) === 'string')
+
+            return {
+               ...state,
+               allRazas: filter,
+               filters: {
+                  ...state.filters,
+                  filterO: payload,
+                  filterT: 'All',
+               },
+            }
+         }
       case RESET:
          return {
             ...state,
-            allRazas: [...state.copyRazas]
+            allRazas: [...state.copyReset]
          }
       default:
          return state;

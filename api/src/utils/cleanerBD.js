@@ -7,6 +7,7 @@ const cleanerBD = (arr) => {
          weight: data.weight,
          height: data.height,
          life_span: data.life_span,
+         temperament: data.temperament,
          image: data.image,
       }
    })

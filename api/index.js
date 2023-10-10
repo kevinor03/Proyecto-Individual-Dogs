@@ -21,6 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
+
 //CAMBIAR EL force A true PARA QUE LAS TABLAS SE LIMPIEN AL GUARDAR
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
