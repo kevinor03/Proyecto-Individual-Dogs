@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { orderRazas, filterTemp, filterOrigin } from '../../redux/actions/index'
 
-function NavBar({ handleChange, handleSubmit, handleReset }) {
+function NavBar({ handleChange, handleSubmit, handleReset, pagina, setPagina }) {
    const dispatch = useDispatch()
    const allTemperaments = useSelector((state) => state.allTemperaments)
    const order = useSelector((state) => state.filters.order)
@@ -12,12 +12,15 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
 
    const handleOrder = (e) => { // funcion que agarra el input de ordenamiento
       dispatch(orderRazas(e.target.value))
+      setPagina(parseInt(pagina) ** 0)
    }
    const handleFilterTemp = (e) => { // funcion que agarra el input de temperamentos
       dispatch(filterTemp(e.target.value))
+      setPagina(parseInt(pagina) ** 0)
    }
    const handleFilterOrigin = (e) => {// funcion que agarra el input del origen
       dispatch(filterOrigin(e.target.value))
+      setPagina(parseInt(pagina) ** 0)
    }
 
    return (

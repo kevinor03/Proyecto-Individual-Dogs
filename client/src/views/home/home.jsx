@@ -24,8 +24,10 @@ function Home() {
    function handleSubmit(e) { // funcion que despacha la funcion para buscar por nombre, segun el nombre del estado
       e.preventDefault()
       if (searchName) {
+         setPagina(parseInt(pagina) ** 0)
          dispatch(getNameRazas(searchName))
       } else {
+         setPagina(parseInt(pagina) ** 0)
          dispatch(getRazas())
       } 
    }
@@ -46,7 +48,13 @@ function Home() {
          <div className='home'>
             <h2 className='title'> Proyect <span className='span'>Dogs</span></h2>
             <div>
-               <NavBar handleChange={handleChange} handleSubmit={handleSubmit} handleReset={handleReset} />
+               <NavBar
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  handleReset={handleReset}
+                  pagina={pagina}
+                  setPagina={setPagina}
+               />
             </div>
             <Cards allRazas={allRazas} pagina={pagina} porPagina={porPagina} />
          </div>
