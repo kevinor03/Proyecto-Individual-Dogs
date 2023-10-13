@@ -16,7 +16,7 @@ function Detail() {
             if (data.name) {
                setCharacter(data);
             } else {
-               window.alert("No hay personajes con ese ID");
+               window.alert("There are no races with that ID");
             }
          }
       );
@@ -28,7 +28,7 @@ function Detail() {
    };
 
    return (
-      <div>
+      <div className='backgroundD'>
          <div className='detail'>
          <h1>{character.name}</h1>
          <div className='position'>

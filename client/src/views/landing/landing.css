@@ -8,6 +8,7 @@
    font-family: "Bigelow Rules";
 }
 .enter {
+   padding: 10px 10px;
    position: fixed;
    margin-top: 250px;
    background-color: white;

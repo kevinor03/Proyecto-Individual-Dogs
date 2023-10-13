@@ -6,7 +6,7 @@
 .title {
    margin-top: 50px;
    font-size: 65px;
-   color: #0ccac4;
+   color: #000000;
    font-family: "Bigelow Rules";
    font-weight: 300;
    align-items: center;
@@ -27,4 +27,7 @@ body {
          rgba(7, 27, 82, 1) 0%,
          rgba(0, 128, 128, 1) 100%);
    text-align: center;
+}
+.backgroundH {
+   background-image: url("https://i.pinimg.com/originals/29/8f/da/298fdab6747599714130d5670b81ceee.png");
 }

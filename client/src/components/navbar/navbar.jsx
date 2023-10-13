@@ -2,6 +2,7 @@ import { SearchInput, SearchIcon, IconBox, NavContainer, ExitIcon } from "./navb
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { orderRazas, filterTemp, filterOrigin } from '../../redux/actions/index'
+import { ReactComponent as OpenDoor } from '../../assets/puerta_abierta.svg'
 
 function NavBar({ handleChange, handleSubmit, handleReset }) {
    const dispatch = useDispatch()

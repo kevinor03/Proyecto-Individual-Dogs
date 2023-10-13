@@ -22,12 +22,12 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   padding: 25px;
+   padding: 39px;
 }
 
 .titleForm {
    font-size: 60px;
-   color: #0ccac4;
+   color: #000000;
    font-family: "Bigelow Rules";
 }
 
@@ -38,4 +38,7 @@
    padding: 6px 10px;
    margin-bottom: 20px;
    margin: 10px;
+}
+.backgroundF {
+   background-image: url("https://i.pinimg.com/originals/29/8f/da/298fdab6747599714130d5670b81ceee.png");
 }

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { ReactComponent as MagnifyingGlass } from '../../assets/lupa.svg'
-// import { ReactComponent as CloseDoor } from '../../assets/puerta_cerrada.svg'
 import { ReactComponent as OpenDoor } from '../../assets/puerta_abierta.svg'
 
 // #58FAF4

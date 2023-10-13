@@ -6,7 +6,7 @@
    border: 1px solid grey;
    border-radius: 5px;
    padding: 25px;
-   margin-left: 28%;
+   margin-left: 30%;
    -moz-osx-font-smoothing: grayscale;
    backface-visibility: hidden;
 }
@@ -35,4 +35,7 @@
    width: 25%;
       padding: 6px 10px;
       margin-bottom: 20px;
+}
+.backgroundD {
+   background-image: url("https://i.pinimg.com/originals/29/8f/da/298fdab6747599714130d5670b81ceee.png");
 }

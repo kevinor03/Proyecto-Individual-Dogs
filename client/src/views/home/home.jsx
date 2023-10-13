@@ -42,7 +42,7 @@ function Home() {
    }, [dispatch])
 
    return (
-      <div>
+      <div className='backgroundH'>
          <div className='home'>
             <h2 className='title'> Proyect <span className='span'>Dogs</span></h2>
             <div>

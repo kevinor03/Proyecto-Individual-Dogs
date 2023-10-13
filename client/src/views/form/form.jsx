@@ -90,7 +90,7 @@ function Form() {
 
    return (
 
-      <div>
+      <div className='backgroundF'>
          <form className="form" onSubmit={handleSubmit}>
 
             <h1 className='titleForm'>Raza Add Page</h1>
