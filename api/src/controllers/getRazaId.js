@@ -23,19 +23,36 @@ async function getRazaId(idRaza, source) {
 }
 
 async function getRazaName(name) {
-   const dogAPI = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data
-   const razaAPI = [{
-      id: dogAPI[0].id,
-      name: dogAPI[0].name,
-      weight: dogAPI[0].weight.metric,
-      height: dogAPI[0].height.metric,
-      life_span: dogAPI[0].life_span,
-      temperament: dogAPI[0].temperament,
-      image: dogAPI[0].image.url,
+   const dogBD = await Dog.findAll({ where: { name: name } })
+
+   const razaBD = [{
+      id: dogBD[0]?.id,
+      name: dogBD[0]?.name,
+      weight: dogBD[0]?.weight,
+      height: dogBD[0]?.height,
+      life_span: dogBD[0]?.life_span,
+      temperament: dogBD[0]?.temperament,
+      image: dogBD[0]?.image,
    }]
-   const razaBD = await Dog.findAll({ where: { name: name } })
-   return [...razaBD, ...razaAPI]
+
+   const dogAPI = (await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)).data
+
+   const razaAPI = [{
+      id: dogAPI[0]?.id,
+      name: dogAPI[0]?.name,
+      weight: dogAPI[0]?.weight.metric,
+      height: dogAPI[0]?.height.metric,
+      life_span: dogAPI[0]?.life_span,
+      temperament: dogAPI[0]?.temperament,
+      image: dogAPI[0]?.image.url,
+   }]
+   if (razaBD[0].id === undefined) {
+      return [...razaAPI]
+   } else if (razaAPI[0].id === undefined) {
+      return [...razaBD]
+   }
 }
+
 
 module.exports = { getRazaId, getRazaName }
 

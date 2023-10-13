@@ -5,7 +5,7 @@ let initialState = {
    copyRazas: [],
    copyReset: [],
    allTemperaments: [],
-   filters: { order: 'Asc', filterT: 'All', filterO: 'All' },
+   filters: { order: 'Name Asc', filterT: 'All', filterO: 'All' },
 }
 
 function rootReducer(state = initialState, action) {
@@ -65,7 +65,6 @@ function rootReducer(state = initialState, action) {
                   return parseInt(pesoA[0]) - parseInt(pesoB[0])
                }))
                break;
-
             case "Weight Des":
                orderRazas?.sort(((a, b) => {
                   let pesoA;
@@ -117,16 +116,15 @@ function rootReducer(state = initialState, action) {
                },
             }
          } else {
-            let filter = state.allRazas.filter((dog) => dog?.temperament?.includes(payload))
+            let filter = state.copyReset.filter((dog) => dog?.temperament?.includes(payload))
 
             return {
                ...state,
-               allRazas: state.copyRazas,
                allRazas: filter,
                filters: {
                   ...state.filters,
                   filterT: payload,
-                  filterO: 'All',
+                  filterO: 'All'
                },
             }
          }
@@ -151,14 +149,20 @@ function rootReducer(state = initialState, action) {
                filters: {
                   ...state.filters,
                   filterO: payload,
-                  filterT: 'All',
+                  filterT: 'All'
                },
             }
          }
       case RESET:
          return {
             ...state,
-            allRazas: [...state.copyReset]
+            allRazas: [...state.copyReset],
+            filters: {
+               ...state.filters,
+               order: 'Name Asc',
+               filterT: 'All',
+               filterO: 'All'
+            }
          }
       default:
          return state;

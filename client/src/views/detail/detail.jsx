@@ -35,9 +35,10 @@ function Detail() {
          </div>
          <div className='datos'>
             <span>Weight: {character.weight?.metric || character.weight} Kg </span>
-            <span>Height: {character.height?.metric || character.height} cms</span>
+            <span>Height: {character.height?.metric || character.height} cm </span>
             <span>Life Span: {character.life_span}</span>
             <span>Temperaments: {character.temperament}</span>
+            <span>{id}</span>
          </div>
          <button className='button' onClick={home}>Home</button>
       </div>

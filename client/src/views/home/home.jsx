@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNameRazas, getRazas, resetFilter, getTemperaments } from '../../redux/actions';
 
 import NavBar from '../../components/navbar/navbar';
@@ -11,11 +11,10 @@ import { Paginacion } from '../../components/paginacion/paginacion';
 function Home() {
    const dispatch = useDispatch()
    const allRazas = useSelector((state) => state.allRazas) // conexion al estado de razas
-   // const allTemperaments = useSelector((state) => state.allTemperaments) // conexion al estado de temperamentos
-   const [searchName, setSearchName] = useState("")
-   const [pagina, setPagina] = useState(1)
-   const [porPagina, setPorPagina] = useState(8)
-   const maximo = Math.ceil(allRazas.length / porPagina)
+   const [searchName, setSearchName] = useState("") // estado para guardar el nombre
+   const [pagina, setPagina] = useState(1) // cantidad de paginas 
+   const [porPagina, setPorPagina] = useState(8) // cantidad de tarjetas por pagina
+   const maximo = Math.ceil(allRazas.length / porPagina) // paginas maximas que se utilizan
 
    function handleChange(e) {
       e.preventDefault()
@@ -24,11 +23,12 @@ function Home() {
 
    function handleSubmit(e) {
       e.preventDefault()
-      if (e) {
+      if (searchName) {
          dispatch(getNameRazas(searchName))
+         setSearchName()
       } else {
          dispatch(getRazas())
-      }
+      } 
    }
 
    function handleReset(e) {
@@ -39,7 +39,7 @@ function Home() {
    useEffect(() => {
       dispatch(getRazas())
       dispatch(getTemperaments())
-      //return (()=>{"clearDetail()"}) //? el return limpia el estado, habria que averiguar como funciona
+      dispatch(resetFilter())
    }, [dispatch])
 
    return (

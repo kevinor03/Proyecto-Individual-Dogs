@@ -4,7 +4,9 @@ import './card.css';
 
 function Card({ raza }) {
    const { name, image, weight, id, temperament } = raza
-   console.log(image)
+   if (!name) {
+      alert("That breed was not found")
+   }
    return (
       <div key={id} className='card'>
          <Link to={`/home/${id}`}>

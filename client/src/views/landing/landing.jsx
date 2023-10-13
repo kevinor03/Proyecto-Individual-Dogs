@@ -4,14 +4,14 @@ import './landing.css'
 
 function Landing() {
    return (
-      <div>
+      <body className="backgroundL">
          <div className="welcome">
-            <h2>¡Welcome Back!</h2>
+            <h2>Proyect Dogs</h2>
          </div>
          <Link to='/home'>
-            <button>¡Vamos!</button>
+            <button className="enter">Enter</button>
          </Link>
-      </div>
+      </body>
    )
 }
 

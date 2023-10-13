@@ -1,7 +1,30 @@
 .welcome {
-   margin-top: 75px;
-   margin-bottom: 50px;
-   font-size: 50px;
+   margin-top: 20px;
+      margin-left: 31%;
+      position: fixed;
+      margin-bottom: 100px;
+      font-size: 60px;
    color: #0ccac4;
    font-family: "Bigelow Rules";
+}
+.enter {
+   position: fixed;
+   margin-top: 250px;
+   background-color: white;
+   border: solid #58FAF4 1px;
+   border-radius: 3px;
+}
+
+.backgroundL {
+   background-image: url("https://img.freepik.com/vector-gratis/marco-vector-perros-sobre-fondo-blanco_53876-127700.jpg");
+   background-repeat: no-repeat;
+   min-height: 100vh;
+   background-position: center center;
+   background-size: cover;
+   background-attachment: fixed;
+   background-position-y: bottom;
+}
+
+body {
+   margin: 0px;
 }

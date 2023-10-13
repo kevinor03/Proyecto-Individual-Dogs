@@ -11,8 +11,6 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
    const filterT = useSelector((state) => state.filters.filterT)
    const filterO = useSelector((state) => state.filters.filterO)
 
-   console.log(allTemperaments)
-
    const handleOrder = (e) => {
       dispatch(orderRazas(e.target.value))
    }

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRazas, getTemperaments, resetFilter } from '../../redux/actions';
 
 import './form.css';
 
 function validate(input) {
    let error = [];
    let symbol = /^([^/@!?|~#^&%*=+-:;.,$¿¡`'"_<>{}()]*)$/; // no permite numeros ni simbolos
-   let symbol2 = /^([^/@!?|~#^&%*=+$:;.¿¡`'"_<>{}()]*)$/; // no permite numeros ni simbolos excepto la ","
+   let symbol2 = /^([^0-9-/@!?|~#^&%*=+$:;.¿¡`'"_<>{}()]*)$/; // no permite numeros ni simbolos excepto la ","
 
    if (!symbol.test(input.name)) {
       error.name = "No se permiten numeros ni simbolos"
@@ -19,6 +21,9 @@ function validate(input) {
 }
 
 function Form() {
+   const dispatch = useDispatch()
+   const temperaments = useSelector((state => state.allTemperaments))
+
    const [data, setData] = useState({
       name: "",
       image: "",
@@ -45,8 +50,16 @@ function Form() {
    const handleSubmit = async (e) => {
       e.preventDefault()
       if (!data.name || !data.temperament) {
-         alert('Por favor, complete los campos obligatorios.');
+         alert('Please complete the required fields.');
          return;
+      }
+
+      const tempInd = data.temperament.split(', ') || data.temperament?.split(',') //? separo el elemento i del array completo
+      for (let i = 0; i < tempInd.lenght; i++) {
+         if (!temperaments.includes(tempInd[i])) {
+            alert("One of the temperaments is not in the DB")
+            return;
+         }
       }
 
       try {
@@ -58,6 +71,8 @@ function Form() {
             life_span: `${data.minLife_span} - ${data.maxLife_span}`,
             temperament: data.temperament
          }
+
+
          await axios.post('http://localhost:3001/postdogs', newDog)
 
          window.alert("¡La raza a sido creada con exito! :D")
@@ -73,6 +88,9 @@ function Form() {
             temperament: [],
          })
 
+         dispatch(getRazas())
+         dispatch(resetFilter())
+
       } catch (error) {
          console.error('Error al enviar los datos al servidor:', error);
          window.alert('Hubo un error al crear la raza de perro :C');
@@ -80,6 +98,7 @@ function Form() {
    }
 
    return (
+
       <div>
          <form onSubmit={handleSubmit}>
             <h1>Raza Add Page</h1>
