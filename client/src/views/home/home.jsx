@@ -35,7 +35,7 @@ function Home() {
       dispatch(resetFilter())
    }
 
-   useEffect(() => { // cada que se recargar la pagina se resetean las tarjetas, los temperamentos y los filtros
+   useEffect(() => { // cada que se ingresa a la pagina home se resetean las tarjetas, los temperamentos y los filtros
       dispatch(getRazas())
       dispatch(getTemperaments())
       dispatch(resetFilter())

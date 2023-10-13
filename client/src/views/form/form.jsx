@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRazas, getTemperaments, resetFilter } from '../../redux/actions';
+import { getRazas, resetFilter } from '../../redux/actions';
 
 import './form.css';
 
@@ -17,12 +17,47 @@ function validate(input) {
    if (!symbol2.test(input.temperament)) {
       error.temperament = "No se permiten numeros ni simbolos, solo ,"
    }
+   if (input.minWeight <= 0) {
+      error.minWeight = "The minimum weight cannot be less than 1"
+   }
+   if (input.minWeight >= 57) {
+      error.minWeight = "The minimum weight cannot be greater than 56"
+   }
+   if (input.maxWeight <= 2) {
+      error.maxWeight = "The maximum weight cannot be less than 3"
+   }
+   if (input.maxWeight >= 90) {
+      error.maxWeight = "The maximum weight cannot be greater than 89"
+   }
+   if (input.minHeight <= 14) {
+      error.minHeight = "The minimum height cannot be less than 14"
+   }
+   if (input.minHeight >= 72) {
+      error.minHeight = "The minimum height cannot be greater than 72"
+   }
+   if (input.maxHeight <= 22) {
+      error.maxHeight = "The maximum height cannot be less than 22"
+   }
+   if (input.maxHeight >= 90) {
+      error.maxHeight = "The maximum height cannot be greater than 90"
+   }
+   if (input.minLife_span <= 0) {
+      error.minLife_span = "The minimum age cannot be less than 1"
+   }
+   if (input.minLife_span >= 16) {
+      error.minLife_span = "The minimum age cannot be greater than 15"
+   }
+   if (input.maxLife_span <= 7) {
+      error.maxLife_span = "The maximum age cannot be less than 8"
+   }
+   if (input.maxLife_span >= 21) {
+      error.maxLife_span = "The maximum age cannot be greater than 20"
+   }
    return error;
 }
 
 function Form() {
    const dispatch = useDispatch()
-   const temperaments = useSelector((state => state.allTemperaments))
 
    const [data, setData] = useState({
       name: "",
@@ -38,6 +73,12 @@ function Form() {
 
    const [error, setError] = useState({
       name: "",
+      minHeight: "",
+      maxHeight: "",
+      minWeight: "",
+      maxWeight: "",
+      minLife_span: "",
+      maxLife_span: "",
       temperament: "",
    });
 
@@ -64,9 +105,11 @@ function Form() {
             temperament: data.temperament
          }
 
+         console.log(newDog)
+
          await axios.post('http://localhost:3001/postdogs', newDog)
 
-         window.alert("¡La raza a sido creada con exito! :D")
+         window.alert("¡The breed has been successfully created! :D")
          setData({
             name: "",
             image: "",
@@ -84,8 +127,20 @@ function Form() {
 
       } catch (error) {
          console.error({ error: error.message });
-         window.alert('Hubo un error al crear la raza de perro :C');
+         window.alert('Something went wrong when creating the race, try again :C');
       }
+   }
+
+   function unSubmit() {
+      let noBoton;
+      for (let e in error) {
+         if (error[e] === '') noBoton = false
+         else {
+            noBoton = true
+            break;
+         }
+      }
+      return noBoton;
    }
 
    return (
@@ -111,7 +166,9 @@ function Form() {
                   name="minWeight"
                   value={data.minWeight}
                   onChange={handleChange}
-               /> </label><br /> 
+
+               /><br /> <span>{error.minWeight}</span>
+               </label><br /> 
 
                <label>Maximum weight: <input className="imputs"
                   type='number'
@@ -119,7 +176,8 @@ function Form() {
                   name="maxWeight"
                   value={data.maxWeight}
                   onChange={handleChange}
-               /> </label><br />
+               /><br /> <span>{error.maxWeight}</span>
+               </label><br />
 
                <label> Minimum height: <input className="imputs"
                   type='number'
@@ -127,7 +185,8 @@ function Form() {
                   name="minHeight"
                   value={data.minHeight}
                   onChange={handleChange}
-               /> </label><br />
+               /><br /> <span>{error.minHeight}</span>
+               </label><br />
 
                <label> Maximum height: <input className="imputs"
                   type='number'
@@ -135,7 +194,8 @@ function Form() {
                   name="maxHeight"
                   value={data.maxHeight}
                   onChange={handleChange}
-               /> </label> <br />
+               /><br /> <span>{error.maxHeight}</span>
+               </label> <br />
 
                <label> Minimum years of life: <input className="imputs"
                   type='number'
@@ -143,7 +203,8 @@ function Form() {
                   name="minLife_span"
                   value={data.minLife_span}
                   onChange={handleChange}
-               /> </label><br />
+               /><br /> <span>{error.minLife_span}</span>
+               </label><br />
 
                <label> Maximum years of life: <input className="imputs"
                   type='number'
@@ -151,7 +212,8 @@ function Form() {
                   name="maxLife_span"
                   value={data.maxLife_span}
                   onChange={handleChange}
-               /> </label><br />
+               /><br /> <span>{error.maxLife_span}</span>
+               </label><br />
 
                <label> Temperaments: <input className="imputs"
                   type='text'
@@ -170,9 +232,9 @@ function Form() {
                   onChange={handleChange}
                /> </label><br />
 
-               <button className='buttonForm' type="submit">Add</button>
+               <button disabled={unSubmit()} className='buttonFormAdd' type="submit">Add</button>
             <Link to="/home">
-                  <button className='buttonForm'>Home</button>
+                  <button className='buttonFormHome'>Home</button>
             </Link>
             </div>
          </form>

@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/dogs', getRazaHandler) //? obtencion de datos de API y BD listo
 
-router.get('/temperaments', getTemperamentHandler) //? obtencion y guardado de temperamentos en la BD listo (faltaria quitar el "error")
+router.get('/temperaments', getTemperamentHandler) //? obtencion y guardado de temperamentos en la BD listo
 
 router.get('/dogs/:idRaza', getRazaIdHandler) //? busqueda por ID listo
 

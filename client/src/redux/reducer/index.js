@@ -5,7 +5,7 @@ let initialState = {
    copyRazas: [],
    copyReset: [],
    allTemperaments: [],
-   filters: { order: 'Name Asc', filterT: 'All', filterO: 'All' },
+   filters: { order: 'All', filterT: 'All', filterO: 'All' },
 }
 
 function rootReducer(state = initialState, action) {
@@ -32,6 +32,15 @@ function rootReducer(state = initialState, action) {
          let orderRazas = [...state.allRazas]
          let orderCopy = [...state.copyRazas]
          switch (payload) {
+            case 'All':
+               return {
+                  ...state,
+                  allRazas: state.copyReset,
+                  filters: {
+                     ...state.filters,
+                     order: payload,
+                  },
+               }
             case 'Name Asc':
                orderRazas?.sort((a, b) => a.name.localeCompare(b.name))
                orderCopy?.sort((a, b) => a.name.localeCompare(b.name))
@@ -125,7 +134,7 @@ function rootReducer(state = initialState, action) {
                   ...state.filters,
                   filterT: payload,
                   filterO: 'All',
-                  order: 'Name Asc'
+                  order: 'All'
                },
             }
          }
@@ -151,7 +160,7 @@ function rootReducer(state = initialState, action) {
                   ...state.filters,
                   filterO: payload,
                   filterT: 'All',
-                  order: 'Name Asc'
+                  order: 'All'
                },
             }
          }
@@ -161,7 +170,7 @@ function rootReducer(state = initialState, action) {
             allRazas: [...state.copyReset],
             filters: {
                ...state.filters,
-               order: 'Name Asc',
+               order: 'All',
                filterT: 'All',
                filterO: 'All'
             }

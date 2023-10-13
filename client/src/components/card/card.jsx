@@ -5,8 +5,8 @@ import './card.css';
 function Card({ raza }) {
    const { name, image, weight, id, temperament } = raza
    if (!name) {
-      alert("That breed was not found")
-   }
+      alert("That breed was not found, please press the RESET button")
+   } else {
    return (
       <div key={id} className='card'>
          <Link className="link" to={`/home/${id}`}>
@@ -17,6 +17,7 @@ function Card({ raza }) {
          </Link>
       </div>
    );
+}
 }
 
 export default Card;

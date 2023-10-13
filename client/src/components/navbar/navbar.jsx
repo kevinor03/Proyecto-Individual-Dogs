@@ -2,7 +2,6 @@ import { SearchInput, SearchIcon, IconBox, NavContainer, ExitIcon } from "./navb
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { orderRazas, filterTemp, filterOrigin } from '../../redux/actions/index'
-import { ReactComponent as OpenDoor } from '../../assets/puerta_abierta.svg'
 
 function NavBar({ handleChange, handleSubmit, handleReset }) {
    const dispatch = useDispatch()
@@ -26,7 +25,7 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
          <form onChange={handleChange}>
             <NavContainer>
                <select name="order" value={order} onChange={handleOrder}> {/* ORDENAMIENTO */}
-                  {/* <option value="All">Order</option> */}
+                  <option value="All">Order</option>
                   <option value="Name Asc">Name A-Z</option>
                   <option value="Name Des">Name Z-A</option>
                   <option value="Weight Asc">Weight Asc</option>

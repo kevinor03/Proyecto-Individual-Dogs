@@ -27,7 +27,7 @@ export const IconBox = styled.div`
    box-shadow: inset 0 0 5px #808080;
    &:hover {
       bos-shadow: inset 0 0 10px #58FAF4;
-   }`;
+}`;
 
 function Landing() {
    return (
@@ -36,7 +36,6 @@ function Landing() {
             <h2>Proyect Dogs</h2>
          </div>
          <Link to='/home'>
-            {/* <button className="enter">Enter</button> */}
             <IconBox>
                <EnterIcon />
             </IconBox>

@@ -31,7 +31,7 @@
    font-family: "Bigelow Rules";
 }
 
-.buttonForm {
+.buttonFormAdd {
    background-color: white;
    border: solid #58FAF4 1px;
    border-radius: 3px;
@@ -39,6 +39,20 @@
    margin-bottom: 20px;
    margin: 10px;
 }
+
+.buttonFormAdd [disabled] {
+   cursor: no-drop
+}
+
+.buttonFormHome {
+   background-color: white;
+   border: solid #58FAF4 1px;
+   border-radius: 3px;
+   padding: 6px 10px;
+   margin-bottom: 20px;
+   margin: 10px;
+}
+
 .backgroundF {
    background-image: url("https://i.pinimg.com/originals/29/8f/da/298fdab6747599714130d5670b81ceee.png");
 }
