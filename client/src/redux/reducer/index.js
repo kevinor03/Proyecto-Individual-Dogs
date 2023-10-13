@@ -41,15 +41,17 @@ function rootReducer(state = initialState, action) {
                      order: payload,
                   },
                }
-            case 'Name Asc':
+            case 'Name Asc': // ordena segun la letra que vaya primero en el abecedario
                orderRazas?.sort((a, b) => a.name.localeCompare(b.name))
                orderCopy?.sort((a, b) => a.name.localeCompare(b.name))
                break;
-            case 'Name Des':
+            case 'Name Des': // ordena segun la letra que vaya ultima en el abecedario 
                orderRazas?.sort((a, b) => b.name.localeCompare(a.name))
                orderCopy?.sort((a, b) => b.name.localeCompare(a.name))
                break;
-            case 'Weight Asc':
+            case 'Weight Asc': 
+               // ordena segun la separacion de los pesos de una raza mas liviana a la mas pesada
+               // retornando la raza con mayor peso maximo
                orderRazas?.sort((a, b) => {
                   let pesoA;
                   let pesoB;
@@ -74,7 +76,9 @@ function rootReducer(state = initialState, action) {
                   return parseInt(pesoA[0]) - parseInt(pesoB[0])
                }))
                break;
-            case "Weight Des":
+            case "Weight Des": 
+               // ordena segun la separacion de los pesos de una raza mas pesada a la mas liviana
+               // retornando la raza con mayor peso maximo
                orderRazas?.sort(((a, b) => {
                   let pesoA;
                   let pesoB;
@@ -115,16 +119,17 @@ function rootReducer(state = initialState, action) {
             },
          }
       case FILTER_T:
-         if (payload === 'All') {
-            return {
+         if (payload === 'All') { // si payload es All resetea las tarjetas
+            return { 
                ...state,
                allRazas: state.copyReset,
                filters: {
                   ...state.filters,
                   filterT: payload,
+                  order: 'All'
                },
             }
-         } else {
+         } else { // sino filtra el estado de temperamentos para renderizar los que tengan el payload
             let filter = state.copyReset.filter((dog) => dog?.temperament?.includes(payload))
 
             return {
@@ -139,16 +144,17 @@ function rootReducer(state = initialState, action) {
             }
          }
       case FILTER_O:
-         if (payload === 'All') {
+         if (payload === 'All') { // si payload es All resetea las tarjetas
             return {
                ...state,
                allRazas: state.copyReset,
                filters: {
                   ...state.filters,
                   filterO: payload,
+                  order: 'All'
                },
             }
-         } else {
+         } else { // sino filtra por id los datos de la API o de la DB segun diga el payload
             let filter = []
             if (payload === 'API') filter = state.copyRazas.filter((dog) => typeof (dog?.id) === 'number')
             else if (payload === 'DB') filter = state.copyRazas.filter((dog) => typeof (dog?.id) === 'string')
@@ -165,7 +171,7 @@ function rootReducer(state = initialState, action) {
             }
          }
       case RESET:
-         return {
+         return { // esto resetea los filtros y las tarjetas
             ...state,
             allRazas: [...state.copyReset],
             filters: {

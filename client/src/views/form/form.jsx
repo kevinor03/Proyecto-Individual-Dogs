@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getRazas, resetFilter } from '../../redux/actions';
 
 import './form.css';
 
-function validate(input) {
+function validate(input) { // funcion para validar los inputs
    let error = [];
    let symbol = /^([^/@!?|~#^&%*=+-:;.,$¿¡`'"_<>{}()]*)$/; // no permite numeros ni simbolos
    let symbol2 = /^([^0-9-/@!?|~#^&%*=+$:;.¿¡`'"_<>{}()]*)$/; // no permite numeros ni simbolos excepto la ","
@@ -59,7 +59,7 @@ function validate(input) {
 function Form() {
    const dispatch = useDispatch()
 
-   const [data, setData] = useState({
+   const [data, setData] = useState({ // estado para guardar los inputs
       name: "",
       image: "",
       minHeight: "",
@@ -71,7 +71,7 @@ function Form() {
       temperament: [],
    });
 
-   const [error, setError] = useState({
+   const [error, setError] = useState({ // estado para guardar los errores
       name: "",
       minHeight: "",
       maxHeight: "",
@@ -82,13 +82,13 @@ function Form() {
       temperament: "",
    });
 
-   function handleChange(e) {
+   function handleChange(e) { // funcion para agregar los inputs en tiempo real al estado data
       const { name, value } = e.target;
       setData({ ...data, [name]: value });
       setError(validate({ ...error, [name]: value }))
    }
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => { // funcion que valida y agrega los datos a la base de datos y limpia los inputs puestos 
       e.preventDefault()
       if (!data.name || !data.temperament) {
          alert('Please complete the required fields.');
@@ -131,7 +131,7 @@ function Form() {
       }
    }
 
-   function unSubmit() {
+   function unSubmit() { // funcion para que se bloquee el boton si hay algun error en los inputs
       let noBoton;
       for (let e in error) {
          if (error[e] === '') noBoton = false

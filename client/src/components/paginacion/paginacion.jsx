@@ -3,14 +3,14 @@ import "./paginacion.scss"
 const atr = "<"
 const del = ">"
 
-export const Paginacion = ({ pagina, setPagina, maximo }) => {
-
+export const Paginacion = ({ pagina, setPagina, maximo }) => {  
+   // recibo por props la pagina actual, para cambiar la pagina y el maximo de paginas 
    const nextPage = () => {
-      setPagina(parseInt(pagina) + 1);
+      setPagina(parseInt(pagina) + 1); // sube el imput de las paginas para que pase a la siguiente
    }
 
    const previusPage = () => {
-      setPagina(parseInt(pagina) - 1);
+      setPagina(parseInt(pagina) - 1); // baja el input de las paginas para que regrese a la anterior 
    }
 
    return (

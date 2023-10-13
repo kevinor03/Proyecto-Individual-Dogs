@@ -9,7 +9,7 @@ function Detail() {
    const navigate = useNavigate();
    const [character, setCharacter] = useState({})
 
-   useEffect(() => {
+   useEffect(() => { // una peticion al back para traer los datos de una raza por id
       axios(`http://localhost:3001/dogs/${id}`).then(
          ({ data }) => {
             if (data.name) {
@@ -22,7 +22,7 @@ function Detail() {
       return setCharacter({});
    }, [id]);
 
-   const home = () => {
+   const home = () => { // funcion para que el boton Home regrese a Home
       navigate(-1);
    };
 

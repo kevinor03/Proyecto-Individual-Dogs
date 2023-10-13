@@ -10,13 +10,13 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
    const filterT = useSelector((state) => state.filters.filterT)
    const filterO = useSelector((state) => state.filters.filterO)
 
-   const handleOrder = (e) => {
+   const handleOrder = (e) => { // funcion que agarra el input de ordenamiento
       dispatch(orderRazas(e.target.value))
    }
-   const handleFilterTemp = (e) => {
+   const handleFilterTemp = (e) => { // funcion que agarra el input de temperamentos
       dispatch(filterTemp(e.target.value))
    }
-   const handleFilterOrigin = (e) => {
+   const handleFilterOrigin = (e) => {// funcion que agarra el input del origen
       dispatch(filterOrigin(e.target.value))
    }
 
@@ -48,13 +48,13 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
                <IconBox>
                   <SearchIcon type='submit' onClick={handleSubmit} /> {/* boton de busqueda */}
                </IconBox>
-               <Link to="/form">
+               <Link to="/form"> {/* boton que lleva al form */}
                   <button>Add</button>
                </Link>
-               <button onClick={handleReset}>Reset</button>
+               <button onClick={handleReset}>Reset</button> {/* boton que resetea filtros y tarjetas */}
                <Link to='/'>
                   <IconBox>
-                     <ExitIcon />
+                     <ExitIcon /> {/* boton que lleva a la landing page */}
                   </IconBox>
                </Link>
             </NavContainer>
