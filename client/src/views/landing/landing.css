@@ -1,7 +1,7 @@
 .welcome {
    margin-top: 20px;
       margin-left: 31%;
-      position: fixed;
+      position: absolute;
       margin-bottom: 100px;
       font-size: 60px;
    color: #0ccac4;

@@ -124,7 +124,8 @@ function rootReducer(state = initialState, action) {
                filters: {
                   ...state.filters,
                   filterT: payload,
-                  filterO: 'All'
+                  filterO: 'All',
+                  order: 'Name Asc'
                },
             }
          }
@@ -149,7 +150,8 @@ function rootReducer(state = initialState, action) {
                filters: {
                   ...state.filters,
                   filterO: payload,
-                  filterT: 'All'
+                  filterT: 'All',
+                  order: 'Name Asc'
                },
             }
          }

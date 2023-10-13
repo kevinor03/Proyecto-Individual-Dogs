@@ -29,18 +29,20 @@ function Detail() {
 
    return (
       <div>
+         <div className='detail'>
          <h1>{character.name}</h1>
          <div className='position'>
             <img className='image' src={character.image} alt={character.name} />
          </div>
          <div className='datos'>
-            <span>Weight: {character.weight?.metric || character.weight} Kg </span>
-            <span>Height: {character.height?.metric || character.height} cm </span>
-            <span>Life Span: {character.life_span}</span>
-            <span>Temperaments: {character.temperament}</span>
-            <span>{id}</span>
+               <h3>Weight:</h3><span> {character.weight?.metric || character.weight} Kg </span>
+               <h3>Height: </h3><span>{character.height?.metric || character.height} cm </span>
+               <h3>Life Span:</h3><span> {character.life_span}</span>
+               <h3>Temperaments:</h3><span> {character.temperament}</span>
+            </div>
+            <button className='button' onClick={home}>Home</button> <br />
+            <span>id: {id}</span>
          </div>
-         <button className='button' onClick={home}>Home</button>
       </div>
    );
 }

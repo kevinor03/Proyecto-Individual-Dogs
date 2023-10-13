@@ -9,7 +9,7 @@ function Card({ raza }) {
    }
    return (
       <div key={id} className='card'>
-         <Link to={`/home/${id}`}>
+         <Link className="link" to={`/home/${id}`}>
             <h2>{name}</h2>
             <img className='image' src={image} alt={name} />
             <h3>Temperaments</h3> <p>{temperament}</p>

@@ -16,27 +16,26 @@ function Home() {
    const [porPagina, setPorPagina] = useState(8) // cantidad de tarjetas por pagina
    const maximo = Math.ceil(allRazas.length / porPagina) // paginas maximas que se utilizan
 
-   function handleChange(e) {
+   function handleChange(e) { // funciona que toma el nombre y lo guarda en un estado
       e.preventDefault()
       setSearchName(e.target.value)
    }
 
-   function handleSubmit(e) {
+   function handleSubmit(e) { // funcion que despacha la funcion para buscar por nombre, segun el nombre del estado
       e.preventDefault()
       if (searchName) {
          dispatch(getNameRazas(searchName))
-         setSearchName()
       } else {
          dispatch(getRazas())
       } 
    }
 
-   function handleReset(e) {
+   function handleReset(e) { // funcion que resetea todos los filtros y las tarjetas
       e.preventDefault()
       dispatch(resetFilter())
    }
 
-   useEffect(() => {
+   useEffect(() => { // cada que se recargar la pagina se resetean las tarjetas, los temperamentos y los filtros
       dispatch(getRazas())
       dispatch(getTemperaments())
       dispatch(resetFilter())
@@ -46,7 +45,7 @@ function Home() {
       <div>
          <div className='home'>
             <h2 className='title'> Proyect <span className='span'>Dogs</span></h2>
-            <div className='welcome'>
+            <div>
                <NavBar handleChange={handleChange} handleSubmit={handleSubmit} handleReset={handleReset} />
             </div>
             <Cards allRazas={allRazas} pagina={pagina} porPagina={porPagina} />

@@ -1,5 +1,4 @@
-import BurgerButton from "./burgerButton";
-import { SearchInput, SearchIcon, SearchIconBox, NavContainer } from "./navbar_styled";
+import { SearchInput, SearchIcon, IconBox, NavContainer, ExitIcon } from "./navbar_styled";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { orderRazas, filterTemp, filterOrigin } from '../../redux/actions/index'
@@ -26,8 +25,9 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
          <form onChange={handleChange}>
             <NavContainer>
                <select name="order" value={order} onChange={handleOrder}> {/* ORDENAMIENTO */}
-                  <option value="Name Asc">Name Asc</option>
-                  <option value="Name Des">Name Des</option>
+                  {/* <option value="All">Order</option> */}
+                  <option value="Name Asc">Name A-Z</option>
+                  <option value="Name Des">Name Z-A</option>
                   <option value="Weight Asc">Weight Asc</option>
                   <option value="Weight Des">Weight Des</option>
                </select>
@@ -45,15 +45,17 @@ function NavBar({ handleChange, handleSubmit, handleReset }) {
                   <option value="API">API</option>
                </select>
                <SearchInput type='search' placeholder="Search for Name" /> {/* search bar */}
-               <SearchIconBox>
+               <IconBox>
                   <SearchIcon type='submit' onClick={handleSubmit} /> {/* boton de busqueda */}
-               </SearchIconBox>
+               </IconBox>
                <Link to="/form">
                   <button>Add</button>
                </Link>
                <button onClick={handleReset}>Reset</button>
                <Link to='/'>
-                  <BurgerButton />
+                  <IconBox>
+                     <ExitIcon />
+                  </IconBox>
                </Link>
             </NavContainer>
          </form>

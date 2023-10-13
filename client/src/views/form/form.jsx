@@ -54,14 +54,6 @@ function Form() {
          return;
       }
 
-      const tempInd = data.temperament.split(', ') || data.temperament?.split(',') //? separo el elemento i del array completo
-      for (let i = 0; i < tempInd.lenght; i++) {
-         if (!temperaments.includes(tempInd[i])) {
-            alert("One of the temperaments is not in the DB")
-            return;
-         }
-      }
-
       try {
          let newDog = {
             name: data.name,
@@ -71,7 +63,6 @@ function Form() {
             life_span: `${data.minLife_span} - ${data.maxLife_span}`,
             temperament: data.temperament
          }
-
 
          await axios.post('http://localhost:3001/postdogs', newDog)
 
@@ -92,7 +83,7 @@ function Form() {
          dispatch(resetFilter())
 
       } catch (error) {
-         console.error('Error al enviar los datos al servidor:', error);
+         console.error({ error: error.message });
          window.alert('Hubo un error al crear la raza de perro :C');
       }
    }
@@ -100,51 +91,90 @@ function Form() {
    return (
 
       <div>
-         <form onSubmit={handleSubmit}>
-            <h1>Raza Add Page</h1>
+         <form className="form" onSubmit={handleSubmit}>
 
-            <label> Name:
-               <input type='text' placeholder='Raza name' name="name" value={data.name} onChange={handleChange} /> <br />
+            <h1 className='titleForm'>Raza Add Page</h1>
+
+            <div className='selectForm'>
+               <label> Name: <input className="imputs"
+                  type='text'
+                  placeholder='Raza name'
+                  name="name"
+                  value={data.name}
+                  onChange={handleChange} /> <br />
                <span>{error.name}</span> <br />
-            </label>
+               </label>
 
-            <label> Minimum weight:
-               <input type='number' placeholder='Min' name="minWeight" value={data.minWeight} onChange={handleChange} /> <br />
-            </label>
+               <label> Minimum weight: <input className="imputs"
+                  type='number'
+                  placeholder='Min'
+                  name="minWeight"
+                  value={data.minWeight}
+                  onChange={handleChange}
+               /> </label><br /> 
 
-            <label>Maximum weight:
-               <input type='number' placeholder='Max' name="maxWeight" value={data.maxWeight} onChange={handleChange} /> <br />
-            </label>
+               <label>Maximum weight: <input className="imputs"
+                  type='number'
+                  placeholder='Max'
+                  name="maxWeight"
+                  value={data.maxWeight}
+                  onChange={handleChange}
+               /> </label><br />
 
-            <label> Minimum height:
-               <input type='number' placeholder='Min' name="minHeight" value={data.minHeight} onChange={handleChange} /> <br />
-            </label>
+               <label> Minimum height: <input className="imputs"
+                  type='number'
+                  placeholder='Min'
+                  name="minHeight"
+                  value={data.minHeight}
+                  onChange={handleChange}
+               /> </label><br />
 
-            <label> Maximum height:
-               <input type='number' placeholder='Max' name="maxHeight" value={data.maxHeight} onChange={handleChange} /> <br />
-            </label>
+               <label> Maximum height: <input className="imputs"
+                  type='number'
+                  placeholder='Max'
+                  name="maxHeight"
+                  value={data.maxHeight}
+                  onChange={handleChange}
+               /> </label> <br />
 
-            <label> Minimum years of life:
-               <input type='number' placeholder='Min' name="minLife_span" value={data.minLife_span} onChange={handleChange} /> <br />
-            </label>
+               <label> Minimum years of life: <input className="imputs"
+                  type='number'
+                  placeholder='Min'
+                  name="minLife_span"
+                  value={data.minLife_span}
+                  onChange={handleChange}
+               /> </label><br />
 
-            <label> Maximum years of life:
-               <input type='number' placeholder='Max' name="maxLife_span" value={data.maxLife_span} onChange={handleChange} /> <br />
-            </label>
+               <label> Maximum years of life: <input className="imputs"
+                  type='number'
+                  placeholder='Max'
+                  name="maxLife_span"
+                  value={data.maxLife_span}
+                  onChange={handleChange}
+               /> </label><br />
 
-            <label> Temperaments:
-               <input type='text' placeholder='More usual' name="temperament" value={data.temperament} onChange={handleChange} /> <br />
+               <label> Temperaments: <input className="imputs"
+                  type='text'
+                  placeholder='More usual'
+                  name="temperament"
+                  value={data.temperament}
+                  onChange={handleChange} /> <br />
                <span>{error.temperament}</span><br />
-            </label>
+               </label>
 
-            <label> Image:
-               <input type='text' placeholder='URL (not required)' name="image" value={data.image} onChange={handleChange} /> <br />
-            </label>
+               <label> Image: <input className="imputs"
+                  type='text'
+                  placeholder='URL (not required)'
+                  name="image"
+                  value={data.image}
+                  onChange={handleChange}
+               /> </label><br />
 
-            <button type="submit">Add</button>
+               <button className='buttonForm' type="submit">Add</button>
             <Link to="/home">
-               <button>Home</button>
+                  <button className='buttonForm'>Home</button>
             </Link>
+            </div>
          </form>
       </div>
    );
