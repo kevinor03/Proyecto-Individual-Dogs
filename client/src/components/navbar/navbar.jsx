@@ -47,19 +47,25 @@ function NavBar({ handleChange, handleSubmit, handleReset, pagina, setPagina }) 
                   <option value="DB">DB</option>
                   <option value="API">API</option>
                </select>
+
                <SearchInput type='search' placeholder="Search for Name" /> {/* search bar */}
+
                <IconBox>
                   <SearchIcon type='submit' onClick={handleSubmit} /> {/* boton de busqueda */}
                </IconBox>
+
                <Link to="/form"> {/* boton que lleva al form */}
                   <button>Add</button>
                </Link>
+
                <button onClick={handleReset}>Reset</button> {/* boton que resetea filtros y tarjetas */}
+
                <Link to='/'>
                   <IconBox>
                      <ExitIcon /> {/* boton que lleva a la landing page */}
                   </IconBox>
                </Link>
+
             </NavContainer>
          </form>
       </div>

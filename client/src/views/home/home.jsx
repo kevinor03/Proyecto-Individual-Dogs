@@ -24,11 +24,13 @@ function Home() {
    function handleSubmit(e) { // funcion que despacha la funcion para buscar por nombre, segun el nombre del estado
       e.preventDefault()
       if (searchName) {
+
+         dispatch(getNameRazas(searchName)) 
          setPagina(parseInt(pagina) ** 0)
-         dispatch(getNameRazas(searchName))
       } else {
-         setPagina(parseInt(pagina) ** 0)
+
          dispatch(getRazas())
+         setPagina(parseInt(pagina) ** 0)
       } 
    }
 

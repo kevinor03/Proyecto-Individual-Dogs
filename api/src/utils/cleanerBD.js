@@ -2,7 +2,6 @@ const cleanerBD = (arr) => {
    return arr.map((data) => {
       return {
          id: data.id,
-         created: data.created,
          name: data.name,
          weight: data.weight,
          height: data.height,
