@@ -25,7 +25,7 @@ const { conn } = require('./src/db.js');
 const { getTemperaments } = require('./src/controllers/getRaza.js')
 
 //CAMBIAR EL force A true PARA QUE LAS TABLAS SE LIMPIEN AL GUARDAR
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   server.listen(3001, async () => {
     await getTemperaments()
     console.log('Listening at 3001'); // eslint-disable-line no-console

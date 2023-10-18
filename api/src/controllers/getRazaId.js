@@ -1,5 +1,5 @@
 const axios = require("axios")
-const { Dog } = require('../db')
+const { Dog, Temperament } = require('../db')
 const { API_KEY } = process.env
 
 // "idRaza" sera un INTEGER o un UUID y "source" sera "API" o "BD" 
@@ -17,8 +17,23 @@ async function getRazaId(idRaza, source) {
       }
       return raza;
    } else {
-      const dog = await Dog.findByPk(idRaza);
-      return dog;
+      const dog = await Dog.findByPk(idRaza, {
+         include: [
+            {
+               model: Temperament,
+               as: 'temperaments',
+               attributes: ["id", "name"],
+               through: {
+                  attributes: []
+               }
+            },
+         ],
+      });
+      if (!dog) {
+         throw Error('no se encontro el perro');
+         const filteredData = { id: dog.id, name: dog.name }
+      }
+      return filteredData;
    }
 }
 

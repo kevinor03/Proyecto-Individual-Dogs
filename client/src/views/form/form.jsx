@@ -96,6 +96,8 @@ function Form() {
       // temperaments: "",
    });
 
+   const [temperaments, setTemperament] = useState()
+
    function handleChange(e) { // funcion para agregar los inputs en tiempo real al estado data
       const { name, value } = e.target;
 
@@ -110,6 +112,14 @@ function Form() {
       setError(validate({ ...data, [name]: value }))
    }
 
+   const handleTemperaments = (e) => {
+      const tempValue = e.target.value;
+      if (e.target.select) {
+         setTemperament([...temperaments, tempValue]);
+      } else {
+         setTemperament(temperaments.filter((temperament) => temperament !== tempValue));
+      }
+   }
 
    // function handleChangeTemp(e) {
    //    const selectedOptions = Array.from(e.target.selectedOptions, (option) =>
@@ -142,7 +152,7 @@ function Form() {
          weight: `${data.minWeight} - ${data.maxWeight}`,
          height: `${data.minHeight} - ${data.maxHeight}`,
          life_span: `${data.minLife_span} - ${data.maxLife_span} years`,
-         temperament: data.temperaments
+         temperaments: data.temperaments
       }
 
       try {
@@ -158,9 +168,9 @@ function Form() {
             maxWeight: "",
             minLife_span: "",
             maxLife_span: "",
-            temperament: [],
+            temperaments: [],
          })
-
+         setTemperament([])
          dispatch(getRazas())
          dispatch(resetFilter())
 

@@ -1,13 +1,30 @@
-const { Dog, Temperaments } = require('../db')
+const { Dog, Temperament } = require('../db')
 
-const createRaza = async (name, weight, height, life_span, image, temperaments) => {
-   const newDog = await Dog.create({
-      name: name,
-      weight: weight,
-      height: height,
-      life_span: life_span,
-      image: image,
+const createRaza = async (
+   name, weight, height, life_span, image, temperaments
+) => {
+
+   try {
+      const temperament = await Temperament.findAll({
+         where: {
+            name: temperaments
+         },
+      });
+      const newDog = await Dog.create({
+         name,
+         weight,
+         height,
+         life_span,
+         image,
+         temperaments,
    });
+      await newDog.setTemperaments(temperament);
+      return newDog;
+   } catch (error) {
+      throw new Error(error.message);
+   }
+
+
 
 // const dogTemperaments = []
 // for (let i = 0; i < temperaments.length; i++) {
@@ -16,8 +33,8 @@ const createRaza = async (name, weight, height, life_span, image, temperaments) 
 // }
 
    // dogTemperaments
-   await newDog.addTemperament(temperaments)
-   return newDog
+   // await newDog.addTemperament(temperaments)
+   // return newDog
 }
 
 module.exports = { createRaza }

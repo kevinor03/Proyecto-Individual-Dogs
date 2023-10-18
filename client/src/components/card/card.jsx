@@ -12,7 +12,16 @@ function Card({ raza }) {
          <Link className="link" to={`/home/${id}`}>
             <h2>{name}</h2>
             <img className='image' src={image} alt={name} />
+
             <h3>Temperaments</h3> <p>{temperament}</p>
+
+            {/* <p>{temperament.length > 0
+               ? `Temperaments: ${temperament
+                  .slice(0, 3)
+                  .map((temperament) => temperament.name)
+                  .join(', ')}${temperament.length > 3 ? '...' : ""}`
+               : 'no hay temperamentos'
+            }</p> */}
             <h3>Weight</h3><p> {weight} Kg</p>
          </Link>
       </div>
