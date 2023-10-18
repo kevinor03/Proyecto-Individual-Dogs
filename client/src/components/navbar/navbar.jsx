@@ -38,7 +38,7 @@ function NavBar({ handleChange, handleSubmit, handleReset, pagina, setPagina }) 
                   <option value="All">All</option>
                   {allTemperaments.map((temp) => {
                      return (
-                        <option value={temp} key={temp}>{temp.toUpperCase()}</option>
+                        <option value={temp.name} key={temp.name}>{temp.name.toUpperCase()}</option>
                      )
                   })}
                </select>

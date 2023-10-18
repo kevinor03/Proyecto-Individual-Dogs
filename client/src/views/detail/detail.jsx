@@ -22,6 +22,8 @@ function Detail() {
       return setCharacter({});
    }, [id]);
 
+   console.log(character)
+
    const home = () => { // funcion para que el boton Home regrese a Home
       navigate(-1);
    };

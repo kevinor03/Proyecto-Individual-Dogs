@@ -20,7 +20,7 @@ export const getRazas = () => {
 
 export const getTemperaments = () => {
    return async (dispatch) => {
-      const { data } = await axios('http://localhost:3001/temperaments')
+      const { data } = await axios.get('http://localhost:3001/temperaments')
       return dispatch({
          type: GET_TEMPERAMENTS,
          payload: data,

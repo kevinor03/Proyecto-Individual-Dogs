@@ -1,7 +1,6 @@
 // https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}
 
-const { response } = require("../app");
-const { getRazas, getTemperaments } = require("../controllers/getRaza");
+const { getRazas, getTemperaments, getTempForm } = require("../controllers/getRaza");
 
 const getRazaHandler = async (req, res) => {
    try {
@@ -23,5 +22,5 @@ const getTemperamentHandler = async (req, res) => {
 
 module.exports = {
    getRazaHandler,
-   getTemperamentHandler
+   getTemperamentHandler,
 }

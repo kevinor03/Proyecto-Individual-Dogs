@@ -1,7 +1,7 @@
 const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const { getRazaHandler, getTemperamentHandler } = require("../handlers/getRazasH")
+const { getRazaHandler, getTemperamentHandler, getTemperamentForm } = require("../handlers/getRazasH")
 const { getRazaIdHandler, getRazaNameHandler } = require("../handlers/getRazaIdH")
 const createRazaHandler = require("../handlers/postH")
 
